@@ -20,5 +20,12 @@ library
                        Codec.ActivityStream.Schema,
                        Codec.ActivityStream
   other-modules:       Codec.ActivityStream.Internal
-  build-depends:       base >=4.7 && <4.8, aeson, text, url, lens, datetime, unordered-containers
+  build-depends:       base >=4.7 && <4.8,
+                       aeson,
+                       text,
+                       url,
+                       lens,
+                       datetime,
+                       unordered-containers,
+                       network-uri
   default-language:    Haskell2010
