@@ -16,7 +16,8 @@ build-type:          Simple
 cabal-version:       >=1.10
 
 library
-  exposed-modules:     Codec.ActivityStream.Representation,
+  exposed-modules:     Codec.ActivityStream.Dynamic,
+                       Codec.ActivityStream.Representation,
                        Codec.ActivityStream.Schema,
                        Codec.ActivityStream
   other-modules:       Codec.ActivityStream.Internal
