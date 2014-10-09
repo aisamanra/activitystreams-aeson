@@ -1,7 +1,20 @@
+{-# LANGUAGE ViewPatterns #-}
+
 module Codec.ActivityStream.Internal (commonOpts, commonOptsCC) where
 
+import Control.Monad (mzero)
+import Data.Aeson
 import Data.Aeson.TH
 import Data.Char
+import Data.Text (pack, unpack)
+import Network.URI (URI, parseURI)
+
+instance FromJSON URI where
+  parseJSON (String ((parseURI . unpack) -> Just u)) = return u
+  parseJSON _ = mzero
+
+instance ToJSON URI where
+  toJSON = String . pack . show
 
 toCamelCaseUpper :: String -> String
 toCamelCaseUpper = toCamelCase True
