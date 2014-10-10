@@ -11,95 +11,109 @@ import Codec.ActivityStream.Internal
 import Codec.ActivityStream.Representation
 
 data SchemaVerb
-  = Accept
-  | Access
-  | Acknowledge
-  | Add
-  | Agree
-  | Append
-  | Approve
-  | Archive
-  | Assign
-  | At
-  | Attach
-  | Attend
-  | Author
-  | Authorize
-  | Borrow
-  | Build
-  | Cancel
-  | Close
-  | Complete
-  | Confirm
-  | Consume
-  | Checkin
-  | Create
-  | Delete
-  | Deliver
-  | Deny
-  | Disagree
-  | Dislike
-  | Experience
-  | Favorite
-  | Find
-  | FlagAsInappropriate
-  | Follow
-  | Give
-  | Host
-  | Ignore
-  | Insert
-  | Install
-  | Interact
-  | Invite
-  | Join
-  | Leave
-  | Like
-  | Listen
-  | Lose
-  | MakeFriend
-  | Open
-  | Play
-  | Post
-  | Present
-  | Purchase
-  | Qualify
-  | Read
-  | Receive
-  | Reject
-  | Remove
-  | RemoveFriend
-  | Replace
-  | Request
-  | RequestFriend
-  | Resolve
-  | Return
-  | Retract
-  | RsvpMaybe
-  | RsvpNo
-  | RsvpYes
-  | Satisfy
-  | Save
-  | Schedule
-  | Search
-  | Sell
-  | Send
-  | Share
-  | Sponsor
-  | Start
-  | StopFollowing
-  | Submit
-  | Tag
-  | Terminate
-  | Tie
-  | Unfavorite
-  | Unlike
-  | Unsatisfy
-  | Unsave
-  | Unshare
-  | Update
-  | Use
-  | Watch
-  | Win
+  = Accept -- ^ Indicates that that the actor has accepted the object.
+           --   For instance, a person accepting an award, or accepting
+           -- an assignment.
+  | Access -- ^ Indicates that the actor has accessed the object. For
+           --   instance, a person accessing a room, or accessing a file.
+  | Acknowledge -- ^ Indicates that the actor has acknowledged the object.
+                --   This effectively signals that the actor is aware of the
+                --   object's existence.
+  | Add -- ^ Indicates that the actor has added the object to the target.
+        --   For instance, adding a photo to an album.
+  | Agree -- ^ Indicates that the actor agrees with the object. For example,
+          --   a person agreeing with an argument, or expressing agreement
+          --   with a particular issue.
+  | Append -- ^ Indicates that the actor has appended the object to the
+           --   target. For instance, a person appending a new record
+           --   to a database.
+  | Approve -- ^ Indicates that the actor has approved the object. For
+            --   instance, a manager might approve a travel request.
+  | Archive -- ^ Indicates that the actor has archived the object.
+  | Assign -- ^ Indicates that the actor has assigned the object to the target.
+  | At -- ^ Indicates that the actor is currently located at the object.
+       --   For instance, a person being at a specific physical location.
+  | Attach -- ^ Indicates that the actor has attached the object to the
+           --   target. For instance, a person attaching a file to a wiki
+           --   page or an email.
+  | Attend -- ^
+  | Author -- ^
+  | Authorize -- ^
+  | Borrow -- ^
+  | Build -- ^
+  | Cancel -- ^
+  | Close -- ^
+  | Complete -- ^
+  | Confirm -- ^
+  | Consume -- ^
+  | Checkin -- ^
+  | Create -- ^
+  | Delete -- ^
+  | Deliver -- ^
+  | Deny -- ^
+  | Disagree -- ^
+  | Dislike -- ^
+  | Experience -- ^
+  | Favorite -- ^
+  | Find -- ^
+  | FlagAsInappropriate -- ^
+  | Follow -- ^
+  | Give -- ^
+  | Host -- ^
+  | Ignore -- ^
+  | Insert -- ^
+  | Install -- ^
+  | Interact -- ^
+  | Invite -- ^
+  | Join -- ^
+  | Leave -- ^
+  | Like -- ^
+  | Listen -- ^
+  | Lose -- ^
+  | MakeFriend -- ^
+  | Open -- ^
+  | Play -- ^
+  | Post -- ^
+  | Present -- ^
+  | Purchase -- ^
+  | Qualify -- ^
+  | Read -- ^
+  | Receive -- ^
+  | Reject -- ^
+  | Remove -- ^
+  | RemoveFriend -- ^
+  | Replace -- ^
+  | Request -- ^
+  | RequestFriend -- ^
+  | Resolve -- ^
+  | Return -- ^
+  | Retract -- ^
+  | RsvpMaybe -- ^
+  | RsvpNo -- ^
+  | RsvpYes -- ^
+  | Satisfy -- ^
+  | Save -- ^
+  | Schedule -- ^
+  | Search -- ^
+  | Sell -- ^
+  | Send -- ^
+  | Share -- ^
+  | Sponsor -- ^
+  | Start -- ^
+  | StopFollowing -- ^
+  | Submit -- ^
+  | Tag -- ^
+  | Terminate -- ^
+  | Tie -- ^
+  | Unfavorite -- ^
+  | Unlike -- ^
+  | Unsatisfy -- ^
+  | Unsave -- ^
+  | Unshare -- ^
+  | Update -- ^
+  | Use -- ^
+  | Watch -- ^
+  | Win -- ^ foo
     deriving (Eq, Show, Read)
 
 deriveJSON (commonOptsCC "") ''SchemaVerb

@@ -17,6 +17,7 @@ cabal-version:       >=1.10
 
 library
   exposed-modules:     Codec.ActivityStream.Dynamic,
+                       Codec.ActivityStream.DynamicSchema,
                        Codec.ActivityStream.Representation,
                        Codec.ActivityStream.Schema,
                        Codec.ActivityStream
