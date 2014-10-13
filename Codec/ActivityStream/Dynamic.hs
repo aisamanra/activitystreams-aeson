@@ -57,6 +57,7 @@ module Codec.ActivityStream.Dynamic
        , acVerb
        , acRest
        , makeActivity
+       , asObject
          -- * Collection
        , Collection
        , cTotalItems
@@ -230,6 +231,12 @@ makeActivity actor published = Activity
   $ HM.insert "actor"     (toJSON actor)
   $ HM.insert "published" (toJSON published)
   $ HM.empty
+
+-- | JSON Activity Streams 1.0 specificies that an @Activity@ may be used as an
+--   @Object@. In such a case, the object may have fields permitted on either an
+--   @Activity@ or an @Object@
+asObject :: Activity -> Object
+asObject act = Object (fromActivity act)
 
 -- | Collection
 
