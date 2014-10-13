@@ -21,7 +21,8 @@ library
                        Codec.ActivityStream.Representation,
                        Codec.ActivityStream.Schema,
                        Codec.ActivityStream
-  other-modules:       Codec.ActivityStream.Internal
+  other-modules:       Codec.ActivityStream.Internal,
+                       Codec.ActivityStream.LensInternal
   build-depends:       base >=4.7 && <4.8,
                        aeson,
                        text,

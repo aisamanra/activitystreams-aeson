@@ -47,6 +47,7 @@ module Codec.ActivityStream.Dynamic
        , acGenerator
        , acIcon
        , acId
+       , acObject
        , acPublished
        , acProvider
        , acTarget
@@ -56,6 +57,7 @@ module Codec.ActivityStream.Dynamic
        , acVerb
        , acRest
        , makeActivity
+       , asObject
          -- * Collection
        , Collection
        , cTotalItems
@@ -198,6 +200,9 @@ acIcon = makeAesonLensMb "icon" acRest
 acId :: Lens' Activity (Maybe Text)
 acId = makeAesonLensMb "id" acRest
 
+acObject :: Lens' Activity (Maybe Object)
+acObject = makeAesonLensMb "object" acRest
+
 acPublished :: Lens' Activity DateTime
 acPublished = makeAesonLens "published" acRest
 
@@ -221,12 +226,17 @@ acVerb = makeAesonLensMb "verb" acRest
 
 -- | Create an @Activity@ with an @actor@, @published@, and
 --   @provider@ property.
-makeActivity :: Object -> DateTime -> Object -> Activity
-makeActivity actor published provider = Activity
+makeActivity :: Object -> DateTime -> Activity
+makeActivity actor published = Activity
   $ HM.insert "actor"     (toJSON actor)
   $ HM.insert "published" (toJSON published)
-  $ HM.insert "provider"  (toJSON provider)
   $ HM.empty
+
+-- | JSON Activity Streams 1.0 specificies that an @Activity@ may be used as an
+--   @Object@. In such a case, the object may have fields permitted on either an
+--   @Activity@ or an @Object@
+asObject :: Activity -> Object
+asObject act = Object (fromActivity act)
 
 -- | Collection
 
