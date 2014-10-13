@@ -47,6 +47,7 @@ module Codec.ActivityStream.Dynamic
        , acGenerator
        , acIcon
        , acId
+       , acObject
        , acPublished
        , acProvider
        , acTarget
@@ -197,6 +198,9 @@ acIcon = makeAesonLensMb "icon" acRest
 
 acId :: Lens' Activity (Maybe Text)
 acId = makeAesonLensMb "id" acRest
+
+acObject :: Lens' Activity (Maybe Object)
+acObject = makeAesonLensMb "object" acRest
 
 acPublished :: Lens' Activity DateTime
 acPublished = makeAesonLens "published" acRest
