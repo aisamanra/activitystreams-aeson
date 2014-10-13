@@ -225,11 +225,10 @@ acVerb = makeAesonLensMb "verb" acRest
 
 -- | Create an @Activity@ with an @actor@, @published@, and
 --   @provider@ property.
-makeActivity :: Object -> DateTime -> Object -> Activity
-makeActivity actor published provider = Activity
+makeActivity :: Object -> DateTime -> Activity
+makeActivity actor published = Activity
   $ HM.insert "actor"     (toJSON actor)
   $ HM.insert "published" (toJSON published)
-  $ HM.insert "provider"  (toJSON provider)
   $ HM.empty
 
 -- | Collection
