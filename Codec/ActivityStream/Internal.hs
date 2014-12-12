@@ -1,20 +1,22 @@
 {-# LANGUAGE ViewPatterns #-}
 
-module Codec.ActivityStream.Internal (commonOpts, commonOptsCC) where
+module Codec.ActivityStream.Internal (commonOpts, commonOptsCC, ensure) where
 
 import Control.Monad (mzero)
 import Data.Aeson
 import Data.Aeson.TH
 import Data.Char
-import Data.Text (pack, unpack)
-import Network.URI (URI, parseURI)
+import Data.HashMap.Strict (HashMap, member)
+import Data.Monoid ((<>))
+import Data.Text (Text, pack, unpack)
 
-instance FromJSON URI where
-  parseJSON (String ((parseURI . unpack) -> Just u)) = return u
-  parseJSON _ = mzero
-
-instance ToJSON URI where
-  toJSON = String . pack . show
+ensure :: Monad m => String -> HashMap Text Value -> [Text] -> m ()
+ensure objName obj keys = mapM_ go keys
+  where go k
+          | member k obj = return ()
+          | otherwise = fail ("Object \"" <> objName <>
+                              "\" does not contain property \"" <>
+                              unpack k <> "\"")
 
 toCamelCaseUpper :: String -> String
 toCamelCaseUpper = toCamelCase True
@@ -50,4 +52,5 @@ commonOptsCC prefix = defaultOptions
   { fieldLabelModifier     = fromCamelCase . drop (length prefix)
   , constructorTagModifier = fromCamelCase
   , omitNothingFields      = True
+
   }
