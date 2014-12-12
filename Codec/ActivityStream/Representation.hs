@@ -84,7 +84,7 @@ import           Data.Aeson ( FromJSON(..)
                             , fromJSON
                             )
 import qualified Data.Aeson as A
-import           Data.DateTime (DateTime)
+import           Data.Time.Clock (UTCTime)
 import qualified Data.HashMap.Strict as HM
 import           Data.Text (Text)
 
@@ -233,7 +233,7 @@ oObjectType = makeAesonLensMb "objectType" oRest
 
 -- | The date and time at which the object was published. An object MAY
 --   contain a @published@ property.
-oPublished :: Lens' Object (Maybe DateTime)
+oPublished :: Lens' Object (Maybe UTCTime)
 oPublished = makeAesonLensMb "published" oRest
 
 -- | Natural-language summarization of the object encoded as a single
@@ -244,7 +244,7 @@ oSummary = makeAesonLensMb "summary" oRest
 
 -- | The date and time at which a previously published object has been
 --   modified. An Object MAY contain an @updated@ property.
-oUpdated :: Lens' Object (Maybe DateTime)
+oUpdated :: Lens' Object (Maybe UTCTime)
 oUpdated = makeAesonLensMb "updated" oRest
 
 -- | A JSON Array of one or more absolute IRI's
@@ -333,7 +333,7 @@ acObject = makeAesonLensMb "object" acRest
 
 -- | The date and time at which the activity was published. An activity
 --   MUST contain a @published@ property.
-acPublished :: Lens' Activity DateTime
+acPublished :: Lens' Activity UTCTime
 acPublished = makeAesonLens "published" acRest
 
 -- | Describes the application that published the activity. Note that this
@@ -362,7 +362,7 @@ acTitle = makeAesonLensMb "title" acRest
 
 -- | The date and time at which a previously published activity has
 --   been modified. An Activity MAY contain an @updated@ property.
-acUpdated :: Lens' Activity (Maybe DateTime)
+acUpdated :: Lens' Activity (Maybe UTCTime)
 acUpdated = makeAesonLensMb "updated" acRest
 
 -- | An IRI <http://www.ietf.org/rfc/rfc3987.txt RFC3987>
@@ -384,7 +384,7 @@ acVerb = makeAesonLensMb "verb" acRest
 
 -- | Create an @Activity@ with an @actor@, @published@, and
 --   @provider@ property.
-makeActivity :: Object -> DateTime -> Activity
+makeActivity :: Object -> UTCTime -> Activity
 makeActivity actor published = Activity
   $ HM.insert "actor"     (toJSON actor)
   $ HM.insert "published" (toJSON published)

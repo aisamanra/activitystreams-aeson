@@ -88,7 +88,7 @@ module Codec.ActivityStream.Schema
 
 import qualified Data.Aeson as Aeson
 import           Data.Aeson.TH (deriveJSON)
-import           Data.DateTime (DateTime)
+import           Data.Time.Clock (UTCTime)
 import           Data.Aeson ( FromJSON(..), ToJSON(..) )
 import qualified Data.HashMap.Strict as HM
 import           Data.Text (Text)
@@ -698,7 +698,7 @@ evAttending = makeAesonLensMb "attending" oRest
 
 -- | The date and time that the event ends represented as a String
 -- conforming to the "date-time" production in [RFC3339].
-evEndTime :: Lens' Object (Maybe DateTime)
+evEndTime :: Lens' Object (Maybe UTCTime)
 evEndTime = makeAesonLensMb "endTime" oRest
 
 -- | A collection object as defined in Section 3.5 of the JSON
@@ -727,7 +727,7 @@ evNotAttending = makeAesonLensMb "notAttending" oRest
 
 -- | The date and time that the event begins represented as a String
 -- confirming to the "date-time" production in RFC 3339.
-evStartTime :: Lens' Object (Maybe DateTime)
+evStartTime :: Lens' Object (Maybe UTCTime)
 evStartTime = makeAesonLensMb "startTime" oRest
 
 -- issue
@@ -811,7 +811,7 @@ tsActor = makeAesonLensMb "actor" oRest
 
 -- | A RFC 3339 date-time specifying the date and time by which the
 -- task is to be completed.
-tsBy :: Lens' Object (Maybe DateTime)
+tsBy :: Lens' Object (Maybe UTCTime)
 tsBy = makeAesonLensMb "by" oRest
 
 -- | An Activity Streams object describing the object of the task.
